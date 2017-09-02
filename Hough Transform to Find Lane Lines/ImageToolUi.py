@@ -210,7 +210,7 @@ class ImageToolUi(Tk):
     def on_print(self):
         print("""
 ...
-vertices = np.array([[{p1},{p2},{p3},{p3}]], dtype=np.int32)
+vertices = np.array([[{p1},{p2},{p3},{p4}]], dtype=np.int32)
 ...
 rho = {rho} # distance resolution in pixels of the Hough grid
 theta = {degree} * np.pi/180 # angular resolution in radians of the Hough grid

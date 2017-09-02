@@ -30,6 +30,13 @@ max_line_gap = 1  # maximum gap in pixels between connectable line segments
 
 
 def plot(image, xx, yy):
+    ysize = image.shape[0]
+    xsize = image.shape[1]
+    print("Y size: ", ysize, ", X size: ", xsize)
+
+    # plt.xticks(range(xsize, 10))
+    # plt.yticks(range(ysize, 10))
+
     plt.plot(xx, yy, 'b--', lw=4)
     plt.imshow(image)
     plt.show()
