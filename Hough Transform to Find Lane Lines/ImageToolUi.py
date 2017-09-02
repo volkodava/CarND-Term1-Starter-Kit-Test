@@ -32,14 +32,14 @@ class ImageToolUi(Tk):
         # distance resolution in pixels of the Hough grid
         self.rho = 1
         # angular resolution in radians of the Hough grid
-        self.selected_degree = 1
+        self.selected_degree = 3
         self.theta = self.selected_degree * np.pi / 180
         # minimum number of votes (intersections in Hough grid cell)
-        self.threshold = 1
+        self.threshold = 30
         # minimum number of pixels making up a line
-        self.min_line_length = 5
+        self.min_line_length = 25
         # maximum gap in pixels between connectable line segments
-        self.max_line_gap = 1
+        self.max_line_gap = 30
 
         # create ui
         f = Frame(self, bd=2)
@@ -57,22 +57,22 @@ class ImageToolUi(Tk):
 
         self.theta_var = IntVar()
         self.theta_var.set(self.selected_degree)
-        Scale(f, label='Theta', orient=HORIZONTAL, from_=1, to=30,
+        Scale(f, label='Theta', orient=HORIZONTAL, from_=1, to=60,
               variable=self.theta_var, command=self.on_theta).pack(side='left')
 
         self.votes_var = IntVar()
         self.votes_var.set(self.threshold)
-        Scale(f, label='Votes', orient=HORIZONTAL, from_=1, to=50,
+        Scale(f, label='Votes', orient=HORIZONTAL, from_=1, to=100,
               variable=self.votes_var, command=self.on_votes).pack(side='left')
 
         self.min_line_var = IntVar()
         self.min_line_var.set(self.min_line_length)
-        Scale(f, label='Min Length', orient=HORIZONTAL, from_=1, to=50,
+        Scale(f, label='Min Length', orient=HORIZONTAL, from_=1, to=100,
               variable=self.min_line_var, command=self.on_min_line).pack(side='left')
 
         self.max_line_var = IntVar()
         self.max_line_var.set(self.max_line_gap)
-        Scale(f, label='Max Gap', orient=HORIZONTAL, from_=1, to=50,
+        Scale(f, label='Max Gap', orient=HORIZONTAL, from_=1, to=100,
               variable=self.max_line_var, command=self.on_max_line).pack(side='left')
 
         f.pack(fill='x')
