@@ -75,6 +75,9 @@ class ImageToolUi(Tk):
         Scale(f, label='Max Gap', orient=HORIZONTAL, from_=1, to=100,
               variable=self.max_line_var, command=self.on_max_line).pack(side='left')
 
+        Button(f, text='Print',
+               command=self.on_print).pack(side='left')
+
         f.pack(fill='x')
 
         self.canvas = Canvas(self, bd=0, highlightthickness=0,
@@ -203,6 +206,21 @@ class ImageToolUi(Tk):
         if self.numpy_image is not None:
             print("Set max_line_gap to: ", self.max_line_gap)
             self.update_image(np.copy(self.numpy_image))
+
+    def on_print(self):
+        print("""
+...
+vertices = np.array([[{p1},{p2},{p3},{p3}]], dtype=np.int32)
+...
+rho = {rho} # distance resolution in pixels of the Hough grid
+theta = {degree} * np.pi/180 # angular resolution in radians of the Hough grid
+threshold = {threshold} # minimum number of votes (intersections in Hough grid cell)
+min_line_length = {min_line_length} # minimum number of pixels making up a line
+max_line_gap = {max_line_gap} # maximum gap in pixels between connectable line segments
+line_image = np.copy(image)*0 # creating a blank to draw lines on
+...        
+        """.format(p1=self.p1, p2=self.p2, p3=self.p3, p4=self.p4, rho=self.rho, degree=self.selected_degree,
+                   threshold=self.threshold, min_line_length=self.min_line_length, max_line_gap=self.max_line_gap))
 
 
 if __name__ == "__main__":
