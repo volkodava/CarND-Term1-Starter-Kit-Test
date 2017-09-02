@@ -30,6 +30,10 @@ class ImageToolUi(Tk):
                                       command=self.open_image)
         self.openImageButton.pack(side='left')
 
+        self.rectangleButton = Button(f, text='Rectangle',
+                                      command=self.draw_rectangle)
+        self.rectangleButton.pack(side='left')
+
         self.kernel = IntVar(self)
         self.kernel.set(self.kernelOptions[0])
         self.kernelMenu = OptionMenu(f, self.kernel, *self.kernelOptions, command=self.on_kernel)
@@ -84,6 +88,9 @@ class ImageToolUi(Tk):
         self.tkphoto = ImageTk.PhotoImage(im)
         self.canvasItem = self.c.create_image(0, 0, anchor='nw', image=self.tkphoto)
         self.c.config(width=im.size[0], height=im.size[1])
+
+    def draw_rectangle(self):
+        pass
 
     def on_kernel(self, value):
         self.kernel_value = value
